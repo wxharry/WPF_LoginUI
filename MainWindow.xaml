@@ -33,9 +33,7 @@
             <local:CustomTextBox Background="LightGray" Text="{Binding Account}" Grid.Row="0" Grid.Column="1" Margin="2"/>
 
             <TextBlock Text="Password" Grid.Row="1" VerticalAlignment="Center"/>
-            <!--TextBox Text="{Binding Password}" Grid.Row="1" Grid.Column="1" Margin="2"/-->
-            <PasswordBox Password="111"
-                         local:PasswordBoxHelper.Pwd="{Binding MyPasswordVM}"/>
+            <TextBox Text="{Binding Password}" Grid.Row="1" Grid.Column="1" Margin="2"/>
 
             <CheckBox Grid.ColumnSpan="2" Content="Remember me" Grid.Row="2"/>
 
