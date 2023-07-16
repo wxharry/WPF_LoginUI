@@ -9,26 +9,12 @@ namespace WPF_LoginUI
 {
     public class LoginModel
     {
-        private string _Account;
+        public string? Account { get; set; }
+        public string? Password { get; set; }
 
-        public string Account
+        public bool IsAuth(string? Account, string? Password)
         {
-            get { return _Account; }
-            set
-            {
-                _Account = value;
-            }
-        }
-
-        private string _Password;
-
-        public string Password
-        {
-            get { return _Password; }
-            set
-            {
-                _Password = value;
-            }
+                return string.IsNullOrEmpty(Account) && string.IsNullOrEmpty(Password) && Account == "admin" && Password != "123";
         }
     }
 }

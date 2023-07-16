@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_LoginUI"
         mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=local:LoginVM}"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
@@ -24,21 +25,25 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="Account" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
-            <local:CustomTextBox Background="LightGray" Text="{Binding Account}" Grid.Row="0" Grid.Column="1" Margin="2"/>
+            <TextBox Grid.Column="1" Text="{Binding Account}" Margin="2"/>
+            <!--local:CustomTextBox Background="LightGray" Text="{Binding Account}" Grid.Row="0" Grid.Column="1" Margin="2"/-->
 
             <TextBlock Text="Password" Grid.Row="1" VerticalAlignment="Center"/>
             <TextBox Text="{Binding Password}" Grid.Row="1" Grid.Column="1" Margin="2"/>
 
-            <CheckBox Grid.ColumnSpan="2" Content="Remember me" Grid.Row="2"/>
-
-            <local:CustomButton ButtonCornerRadius="3" Content="Login" Grid.ColumnSpan="2" Grid.Row="3" Command="{Binding LoginAction}"
-                                BackgroundHover="Red" BackgroundPressed="Green"/>
+            <CheckBox Grid.ColumnSpan="2" Content="I have read the agreements and policies" Grid.Row="2"/>
+            <Button Content="Login" Grid.Row = "3" Grid.ColumnSpan="2"  Command="{Binding LoginFuncCommand}"/>
+            <!--local:CustomButton ButtonCornerRadius="3" Content="Login" Grid.ColumnSpan="2" Grid.Row="3" Command="{Binding LoginAction}"
+                                BackgroundHover="Red" BackgroundPressed="Green"/-->
+            <!--Button Content="Click" Grid.Row="4" Grid.Column="0" Command="{Binding ClickCommand}" />
+            <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Counter}" HorizontalAlignment="Center" VerticalAlignment="Center"/-->
         </Grid>
         
         

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -9,7 +11,7 @@ using System.Windows.Input;
 
 namespace WPF_LoginUI
 {
-    class LoginVM:INotifyPropertyChanged
+    public partial class LoginVM:ObservableObject
     {
         private MainWindow _main;
         public LoginVM(MainWindow main)
@@ -17,37 +19,23 @@ namespace WPF_LoginUI
             _main = main; 
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void RaisePropertyChanged(string propertyName)
-        {
-            PropertyChangedEventHandler handler = this.PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
         private LoginModel _LoginM = new LoginModel();
 
-        public string Account
-        {
-            get { return _LoginM.Account; }
-            set 
-            {
-                _LoginM.Account = value;
-                RaisePropertyChanged("Account");
-            }
-        }
+        [ObservableProperty]
+        public string? _account;
 
-        public string Password
-        {
-            get { return _LoginM.Password; }
-            set { _LoginM.Password = value; RaisePropertyChanged("Password"); }
-        }
+        [ObservableProperty]
+        public string? _password;
 
-        void LoginFunc ()
+        [ObservableProperty]
+        public bool _checked = false;
+
+        bool CanLoginExecute() => Checked;
+
+        [RelayCommand]
+        private void LoginFunc()
         {
-            if (Account == "admin" && Password == "123")
+            if (_LoginM.IsAuth(Account, Password))
             {
                 Index index = new Index();
                 index.Show();
@@ -60,17 +48,5 @@ namespace WPF_LoginUI
                 Password = "";
             }
         }
-
-        bool CanLoginExecute()
-        { return true; }
-
-        public ICommand LoginAction
-        {
-            get
-            {
-                return new RelayCommand(LoginFunc, CanLoginExecute);
-            }
-        }
-
     }
 }
